@@ -11,7 +11,8 @@
     <td><%= task.task_title %></td>
     <td><%= task.task_description %></td>
     <td><%= link_to 'Show', task_path(task.id) %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
+    <td><%= link_to 'Edit', edit_task_path(task), data: { confirm: '編集してよろしいですか?' } %></td>
+    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: '削除してよろしいですか?' } %></td>
   </tr>
 <% end %>
 </table>
