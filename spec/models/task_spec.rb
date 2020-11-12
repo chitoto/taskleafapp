@@ -8,9 +8,9 @@ describe 'タスクモデル機能', type: :model do
       end
     end
     context 'タスクの詳細が空の場合' do
-      it 'バリデーションが通る' do
+      it 'バリデーションにひっかる' do
         task = Task.new(task_title: 'テスト', task_description: '')
-        expect(task).to be_valid
+        expect(task).not_to be_valid
       end
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
