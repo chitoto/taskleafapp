@@ -1,24 +1,21 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+  ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-darwin19]
+  Rails 5.2.4.4
+  psql (PostgreSQL) 12.4
 
-* System dependencies
+#Model
+##User
+  name:string
+  email:string
+  password_digest:string
 
-* Configuration
+##Task
+  task_title:string
+  task_description:text
+  limit:date
+  user_id(foreign_key):integer
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##Label
+  label_name:string
+  user_id(foreign_key):integer
+  task_id(foreign_key):integer
