@@ -1,6 +1,6 @@
-<h1>Tasks#show</h1>
-<p><%= notice %></p>
-<p>Title: <%= @task.task_title %></p>
-<p>Description: <%= @task.task_description %></p>
+<h1><%= t('view.show') %></h1>
+<div><%= notice %></div>
+<div><%= t('view.Title') %>: <%= @task.task_title %></div>
+<div><%= t('view.Description') %>: <%= @task.task_description %></div>
 
-<p><%= link_to 'Index Task', tasks_path %></p>
+<div><%= link_to t('view.Index Task'), tasks_path %></div>
