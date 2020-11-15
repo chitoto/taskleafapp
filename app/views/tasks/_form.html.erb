@@ -22,6 +22,10 @@
     <%= form.label :limit %><br>
     <%= form.date_field :limit %>
   </div>
+  <div class="task_status">
+    <%= form.label :status %><br>
+    <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %>
+  </div>
   <br>
   <div>
   <%= form.submit %>
