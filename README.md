@@ -19,3 +19,12 @@
   label_name:string
   user_id(foreign_key):integer
   task_id(foreign_key):integer
+
+#Heroku
+https://task-leaf-k-app.herokuapp.com/
+1. $ heroku login
+1. heroku git:remote -a アプリurl
+1. $ rails assets:precompile RAILS_ENV=production
+1. git add -A
+1. $ git commit -am "heroku_make it better"
+1. $ git push heroku master
