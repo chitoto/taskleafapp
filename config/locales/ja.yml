@@ -207,6 +207,7 @@ ja:
   view:
     Title: タイトル
     Description: 詳細
+    Limit: 終了期限
     New Task: 新しいタスク
     Index Task: タスク一覧
     show: 詳細

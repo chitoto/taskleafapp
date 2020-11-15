@@ -7,6 +7,7 @@ ja:
       task:
         task_title: タイトル
         task_description: 詳細
+        limit: 終了期限
       user:
         title: タイトル
         name: 名前
