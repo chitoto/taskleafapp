@@ -8,11 +8,11 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(created_at: :desc)
       if params[:title_key].present?
         @tasks = @tasks.search_by_title(params[:title_key])
-        if params[:seach_status].present?
-          @tasks = @tasks.search_by_status(params[:seach_status])
+        if params[:search_status].present?
+          @tasks = @tasks.search_by_status(params[:search_status])
         end
-      elsif params[:seach_status].present?
-        @tasks = @tasks.search_by_status(params[:seach_status])
+      elsif params[:search_status].present?
+        @tasks = @tasks.search_by_status(params[:search_status])
         if params[:title_key].present?
           @tasks = @tasks.search_by_title(params[:title_key])
         end
