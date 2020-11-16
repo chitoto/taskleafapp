@@ -7,14 +7,14 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at: :desc)
       if params[:title_key].present?
-        @tasks = Task.where('task_title LIKE ?', "%#{params[:title_key]}%")
+        @tasks = @tasks.search_by_title(params[:title_key])
         if params[:seach_status].present?
-          @tasks = @tasks.where('status = ?', "#{params[:seach_status]}")
+          @tasks = @tasks.search_by_status(params[:seach_status])
         end
       elsif params[:seach_status].present?
-        @tasks = Task.where('status = ?', "#{params[:seach_status]}")
+        @tasks = @tasks.search_by_status(params[:seach_status])
         if params[:title_key].present?
-          @tasks = @tasks.where('task_title LIKE ?', "%#{params[:title_key]}%")
+          @tasks = @tasks.search_by_title(params[:title_key])
         end
       end
     end
