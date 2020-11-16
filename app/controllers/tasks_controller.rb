@@ -8,9 +8,14 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(created_at: :desc)
       if params[:title_key].present?
         @tasks = Task.where('task_title LIKE ?', "%#{params[:title_key]}%")
-      end
-      if params[:seach_status].present?
+        if params[:seach_status].present?
+          @tasks = @tasks.where('status = ?', "#{params[:seach_status]}")
+        end
+      elsif params[:seach_status].present?
         @tasks = Task.where('status = ?', "#{params[:seach_status]}")
+        if params[:title_key].present?
+          @tasks = @tasks.where('task_title LIKE ?', "%#{params[:title_key]}%")
+        end
       end
     end
   end
