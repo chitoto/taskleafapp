@@ -7,14 +7,14 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at: :desc)
       if params[:title_key].present?
-        @tasks = @tasks.search_by_title(params[:title_key])
+        @tasks = @tasks.search_title(params[:title_key])
         if params[:search_status].present?
-          @tasks = @tasks.search_by_status(params[:search_status])
+          @tasks = @tasks.search_status(params[:search_status])
         end
       elsif params[:search_status].present?
-        @tasks = @tasks.search_by_status(params[:search_status])
+        @tasks = @tasks.search_status(params[:search_status])
         if params[:title_key].present?
-          @tasks = @tasks.search_by_title(params[:title_key])
+          @tasks = @tasks.search_title(params[:title_key])
         end
       end
     end
