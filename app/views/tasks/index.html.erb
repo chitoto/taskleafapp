@@ -1,6 +1,14 @@
 <h1><%= t('view.Index Task') %></h1>
 <%= notice %>
 <p><%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %></p>
+<div class="seach">
+<%= form_tag(tasks_path, method: 'get') do %>
+<%= text_field_tag (:title_key) %>
+<%= select_tag "seach_status", options_for_select([["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]]), include_blank: "Status" %>
+<br>
+<%= submit_tag('Search') %> <%= link_to 'Clear', tasks_path %>
+<% end %>
+</div>
 <table>
   <tr>
     <th><%= t('view.Title') %></th>
