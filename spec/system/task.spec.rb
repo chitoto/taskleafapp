@@ -6,6 +6,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     FactoryBot.create(:task3)
     FactoryBot.create(:task4)
     FactoryBot.create(:task5)
+    sleep(1)
     visit tasks_path
   end
   describe '新規作成機能' do
@@ -16,11 +17,13 @@ RSpec.describe 'タスク管理機能', type: :system do
       fill_in '詳細', with: 'タスク詳細'
       fill_in '終了期限', with: '002021-03-01'
       select '未着手', from: 'ステータス'
+      select '高', from: '優先度'
       click_on '登録する'
       expect(page).to have_content 'タスク名'
       expect(page).to have_content 'タスク詳細'
       expect(page).to have_content '2021年03月01日'
       expect(page).to have_content '未着手'
+      expect(page).to have_content '高'
       end
     end
   end
@@ -68,6 +71,15 @@ RSpec.describe 'タスク管理機能', type: :system do
       select '未着手', from: 'search_status'
       click_on 'Search'
       expect(page).to have_content 'コンテント５'
+      end
+    end
+    context '優先度でソートした場合' do
+      it '優先度の高いタスクが一番上に表示される' do
+        click_on '優先順位でソートする'
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'タイトル１'
+        expect(task_list[1]).to have_content 'あああ'
+        expect(task_list[2]).to have_content 'タイトル２'
       end
     end
   end

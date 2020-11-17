@@ -24,11 +24,11 @@
   </div>
   <div class="task_status">
     <%= form.label :status %><br>
-    <%= form.select :status, Task.en_statuses.keys, {prompt: "選択してください"} %>
+    <%= form.select :status, Task.statuses.keys, {prompt: "選択してください"} %>
   </div>
   <div class="task_priority">
     <%= form.label :priority %><br>
-    <%= form.select :priority, Task.en_priorities.keys, {prompt: "選択してください"} %>
+    <%= form.select :priority, Task.priorities.keys, {prompt: "選択してください"} %>
   </div>
   <br>
   <div>
