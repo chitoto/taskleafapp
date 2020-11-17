@@ -33,5 +33,6 @@
   </tr>
 <% end %>
 </table>
+<%= paginate(@tasks) %>
 <br>
 <%= link_to t('view.New Task'), new_task_path %>
