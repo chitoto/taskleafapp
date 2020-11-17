@@ -2,8 +2,10 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:sort_expired]
+    if params[:sort_expired].present?
       @tasks = Task.all.order(:limit)
+    elsif params[:sort_priority].present?
+      @tasks = Task.all.order(priority: :desc)
     else
       @tasks = Task.all.order(created_at: :desc)
       if params[:title_key].present?
@@ -54,7 +56,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_title, :task_description, :limit, :status)
+    params.require(:task).permit(:task_title, :task_description, :limit, :status, :priority)
   end
 
   def set_task

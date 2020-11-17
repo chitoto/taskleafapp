@@ -24,7 +24,11 @@
   </div>
   <div class="task_status">
     <%= form.label :status %><br>
-    <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %>
+    <%= form.select :status, Task.en_statuses.keys, {prompt: "選択してください"} %>
+  </div>
+  <div class="task_priority">
+    <%= form.label :priority %><br>
+    <%= form.select :priority, Task.en_priorities.keys, {prompt: "選択してください"} %>
   </div>
   <br>
   <div>
