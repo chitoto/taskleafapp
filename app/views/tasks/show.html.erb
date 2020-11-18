@@ -5,5 +5,4 @@
 <div><%= t('view.Limit') %>: <%= l @task.limit, format: :long %></div>
 <div><%= t('view.Status') %>: <%= @task.status %></div>
 <div><%= t('view.Priority') %>: <%= @task.priority %></div>
-
-<div><%= link_to t('view.Index Task'), tasks_path %></div>
+<div><%= link_to t('view.Index Task'), tasks_path, class: "btn btn-primary" %></div>
