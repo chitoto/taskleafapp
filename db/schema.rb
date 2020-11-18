@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2020_11_18_012836) do
     t.date "limit", default: "2021-03-31", null: false
     t.integer "status", null: false
     t.integer "priority"
+    t.index ["status"], name: "index_tasks_on_status"
+    t.index ["task_description"], name: "index_tasks_on_task_description"
     t.index ["task_title"], name: "index_tasks_on_task_title"
   end
 
