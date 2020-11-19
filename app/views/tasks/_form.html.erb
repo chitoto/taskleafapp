@@ -10,17 +10,35 @@
     </div>
   <% end %>
   <br>
-  <div class="task_title">
-    <%= form.label :task_title %><br>
-    <%= form.text_field :task_title %>
+  <div class="form-group">
+    <div class="task_title">
+      <%= form.label :task_title %><br>
+      <%= form.text_field :task_title %>
+    </div>
+    <div class="task_description">
+      <%= form.label :task_description %><br>
+      <%= form.text_field :task_description %>
+    </div>
+    <div class="task_limit">
+      <%= form.label :limit %><br>
+      <%= form.date_field :limit %>
+    </div>
+    <div class="task_status">
+      <%= form.label :status %><br>
+      <%= form.select :status, Task.statuses.keys, {prompt: "選択してください"} %>
+    </div>
+    <div class="task_priority">
+      <%= form.label :priority %><br>
+      <%= form.select :priority, Task.priorities.keys, {prompt: "選択してください"} %>
+    </div>
+    <br>
+    <div>
+    <%= form.submit class: "btn btn-primary" %>
+    </div>
+    <% end %>
   </div>
-  <div class="task_description">
-    <%= form.label :task_description %><br>
-    <%= form.text_field :task_description %>
-  </div>
-  <div>
-  <%= form.submit %>
-  </div>
-<% end %>
 <br>
-<%= link_to 'New Task', new_task_path %>
+<div>
+  <%= link_to t('view.New Task'), new_task_path, class: "btn btn-primary" %>
+  <%= link_to t('view.Index Task'), tasks_path, class: 'btn btn-success' %>
+</div>

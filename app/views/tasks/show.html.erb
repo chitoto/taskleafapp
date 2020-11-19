@@ -1,6 +1,8 @@
-<h1>Tasks#show</h1>
-<p><%= notice %></p>
-<p>Title: <%= @task.task_title %></p>
-<p>Description: <%= @task.task_description %></p>
-
-<p><%= link_to 'Index Task', tasks_path %></p>
+<h1><%= t('view.show') %></h1>
+<div><%= notice %></div>
+<div><%= t('view.Title') %>: <%= @task.task_title %></div>
+<div><%= t('view.Description') %>: <%= @task.task_description %></div>
+<div><%= t('view.Limit') %>: <%= l @task.limit, format: :long %></div>
+<div><%= t('view.Status') %>: <%= @task.status %></div>
+<div><%= t('view.Priority') %>: <%= @task.priority %></div>
+<div><%= link_to t('view.Index Task'), tasks_path, class: "btn btn-primary" %></div>
