@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :current_user?, only: [:show]
+  before_action :current_user_show?, only: [:show]
+  before_action :current_user?, only: [:new]
 
   def new
     @user = User.new
@@ -25,9 +26,15 @@ class UsersController < ApplicationController
                                  :password_confirmation)
   end
 
-  def current_user?
+  def current_user_show?
     unless current_user.id == params[:id].to_i
       redirect_to tasks_path, notice:"他ユーザー情報は閲覧できません！"
+    end
+  end
+
+  def current_user?
+    if current_user
+      redirect_to root_path, notice: "ログアウトしてください！"
     end
   end
 end
