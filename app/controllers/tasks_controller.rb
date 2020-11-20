@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :current_user?, only: [ :edit, :update, :destroy]
   before_action :authenticate_user
 
   def index
@@ -70,4 +71,9 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def current_user?
+    unless current_user.id == @task.user_id
+      redirect_to tasks_path, notice:"他ユーザーのタスクは編集できません！"
+    end
+  end
 end
