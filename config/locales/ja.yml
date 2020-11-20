@@ -215,3 +215,5 @@ ja:
     show: 詳細
     edit: 編集
     destroy: 削除
+  notice:
+    login_needed: ログインが必要です

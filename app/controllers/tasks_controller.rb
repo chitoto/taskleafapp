@@ -1,14 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
 
   def index
       @search_params = {}
     if params[:sort_expired]
-      @tasks = Task.all.order(:limit)
+      @tasks = current_user.tasks.order(:limit)
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: :desc)
+      @tasks = current_user.tasks.order(priority: :desc)
     else
-      @tasks = Task.all.order(created_at: :desc)
+      @tasks = current_user.tasks.order(created_at: :desc)
       if params[:title_key].present?
         @tasks = @tasks.search_title(params[:title_key])
         @search_params.store(:title_key,params[:title_key])
