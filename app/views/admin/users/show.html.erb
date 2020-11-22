@@ -1,0 +1,10 @@
+<p>管理画面</p>
+<h1>ユーザー詳細</h1>
+<div>名前<br><%= @user.name %></div>
+<div>メールアドレス<br><%= @user.email %></div>
+<div>管理者権限<br><%= @user.admin %></div>
+<div>作成日<br><%= l @user.created_at %></div>
+<div>更新日<br><%= l @user.updated_at %></div>
+<div>
+  <%= link_to 'ユーザー一覧', admin_users_path, class: "btn btn-primary" %>
+</div>
