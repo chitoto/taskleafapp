@@ -1,10 +1,37 @@
 <p>管理画面</p>
-<h1>ユーザー詳細</h1>
-<div>名前<br><%= @user.name %></div>
-<div>メールアドレス<br><%= @user.email %></div>
-<div>管理者権限<br><%= @user.admin %></div>
-<div>作成日<br><%= l @user.created_at %></div>
-<div>更新日<br><%= l @user.updated_at %></div>
-<div>
-  <%= link_to 'ユーザー一覧', admin_users_path, class: "btn btn-primary" %>
+<table class="user_details">
+  <thead>
+    <h2>ユーザー詳細</h2>
+  </thead>
+  <tr>
+    <th>名前</th>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>管理者権限</th>
+    <td><%= @user.admin %></td>
+  </tr>
+  <tr>
+    <th>作成日</th>
+    <td><%= l @user.created_at %></td>
+  </tr>
+  <tr>
+    <th>更新日</th>
+    <td><%= l @user.updated_at %></td>
+  </tr>
+</table>
+<br>
+<div class="task_list">
+    <h2> Task一覧</h2>
+  <ul>
+    <% @tasks.each do |user| %>
+    <li><%= user.task_title %></li>
+    <% end %>
+  </ul>
 </div>
+
+  <%= link_to 'ユーザー一覧', admin_users_path, class: "btn btn-primary" %>
