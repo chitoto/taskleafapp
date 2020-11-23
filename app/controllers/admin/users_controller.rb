@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_user
   before_action :admin_user?
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -35,8 +36,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice:"ユーザー削除しました！"
+    if @user.destroy
+      redirect_to admin_users_path, notice:"ユーザー削除しました！"
+    else
+      redirect_to admin_users_path, notice:"ユーザー削除できませんでした！"
+    end
   end
 
   private
