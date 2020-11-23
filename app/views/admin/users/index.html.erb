@@ -7,6 +7,7 @@
     <th>ユーザーネーム</th>
     <th>email</th>
     <th>admin権限</th>
+    <th>タスク数</th>
     <th>作成日</th>
     <th colspan="3"></th>
   </tr>
@@ -16,6 +17,7 @@
     <td><%= user.name %></td>
     <td><%= user.email %></td>
     <td><%= user.admin %></td>
+    <td><%= user.tasks.size %></td>
     <td><%= l user.created_at, format: :long %></td>
     <td><%= link_to 'ユーザー詳細', admin_user_path(user), class: "btn btn-outline-primary" %></td>
     <td><%= link_to 'ユーザー編集', edit_admin_user_path(user), data: { confirm: '編集してよろしいですか?' }, class: 'btn btn-outline-success' %></td>
