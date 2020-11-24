@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'ユーザー管理機能', type: :system do
   before do
-    FactoryBot.create(:user1)
+    FactoryBot.create(:user)
     FactoryBot.create(:user2)
     FactoryBot.create(:user3)
     visit tasks_path
