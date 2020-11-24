@@ -5,6 +5,7 @@ FactoryBot.define do
     limit { '2020-12-01' }
     status { 2 }
     priority { 2 }
+    user
   end
 
   factory :second_task, class: Task do
@@ -13,6 +14,7 @@ FactoryBot.define do
     limit { '2020-12-02' }
     status { 0 }
     priority { 1 }
+    user
   end
 
   factory :task3, class: Task do
@@ -21,6 +23,7 @@ FactoryBot.define do
     limit { '2020-12-03' }
     status { 2 }
     priority { 0 }
+    user
   end
 
   factory :task4, class: Task do
@@ -29,6 +32,7 @@ FactoryBot.define do
     limit { '2020-12-04' }
     status { 2 }
     priority { 0 }
+    user
   end
 
   factory :task5, class: Task do
@@ -37,5 +41,6 @@ FactoryBot.define do
     limit { '2020-12-05' }
     status { 0 }
     priority { 2 }
+    user
   end
 end

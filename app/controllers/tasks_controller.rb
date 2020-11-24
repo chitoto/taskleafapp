@@ -1,14 +1,16 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :current_user?, only: [ :edit, :update, :destroy]
 
   def index
       @search_params = {}
     if params[:sort_expired]
-      @tasks = Task.all.order(:limit)
+      @tasks = current_user.tasks.order(:limit)
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: :desc)
+      @tasks = current_user.tasks.order(priority: :desc)
     else
-      @tasks = Task.all.order(created_at: :desc)
+      @tasks = current_user.tasks.order(created_at: :desc)
       if params[:title_key].present?
         @tasks = @tasks.search_title(params[:title_key])
         @search_params.store(:title_key,params[:title_key])
@@ -33,7 +35,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to task_path(@task.id), notice: "作成しました！"
     else
@@ -69,4 +71,9 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def current_user?
+    unless current_user.id == @task.user_id
+      redirect_to tasks_path, notice:"他ユーザーのタスクは編集できません！"
+    end
+  end
 end
