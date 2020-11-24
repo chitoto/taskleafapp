@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.order("created_at DESC")
+    @users = User.includes(:tasks).order("created_at DESC")
     @users = @users.page(params[:page]).per(10)
   end
 
