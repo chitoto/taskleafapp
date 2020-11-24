@@ -111,14 +111,14 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     end
     context '管理ユーザはユーザの詳細画面にアクセスできる' do
       it 'ユーザの詳細画面が表示される' do
-        user = FactoryBot.create(:user1, email: 'syousai@xxx.com')
+        user = FactoryBot.create(:user, email: 'syousai@xxx.com')
         visit admin_user_path(user)
         expect(page).to have_content 'syousai@xxx.com'
       end
     end
     context '管理ユーザはユーザの編集画面からユーザを編集できる' do
       it '編集内容が表示される' do
-        user = FactoryBot.create(:user1, email: 'syousai@xxx.com')
+        user = FactoryBot.create(:user, email: 'syousai@xxx.com')
         visit edit_admin_user_path(user)
         fill_in '名前', with: 'なまえ'
         fill_in 'メールアドレス', with: 'xxx@xxx.com'
@@ -131,7 +131,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     end
     context '管理ユーザはユーザの削除をできる' do
       it '削除したユーザーが表示されない' do
-        user = FactoryBot.create(:user1, email: 'destroy@xxx.com')
+        user = FactoryBot.create(:user, email: 'destroy@xxx.com')
         visit admin_users_path
         expect(page).to have_content 'destroy@xxx.com'
         user.destroy
