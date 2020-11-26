@@ -1,4 +1,8 @@
 class Task < ApplicationRecord
+  belongs_to :user
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
+
   validates :task_title, presence: true
   validates :task_description, presence: true
   validates :status, presence: true
@@ -9,6 +13,7 @@ class Task < ApplicationRecord
 
   scope :search_title, -> (title_key){where('task_title LIKE ?', "%#{title_key}%")}
   scope :search_status, -> (seach_status){where('status = ?', "#{seach_status}")}
+  scope :search_label, -> (label_id){ where(id: Labelling.where(label_id: label_id).pluck(:task_id)) }
 
-  belongs_to :user
+
 end
