@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :labels
+  resources :labels, except: :show
   root to: 'tasks#index'
   resources :tasks
   resources :users, only: [:new, :create, :show]
