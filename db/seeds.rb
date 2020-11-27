@@ -22,7 +22,7 @@ User.all.each do |user|
       task_description: "#{user[:name]}テキストテキストテキストテキスト",
       status: rand(0..2),
       priority: rand(0..2),
-      label_ids: rand([rand(1..3), rand(4..6), rand(7..10)])
+      label_ids: [rand(1..3), rand(4..6), rand(7..10)]
     )
   end
 end
