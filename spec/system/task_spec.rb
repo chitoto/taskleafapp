@@ -46,7 +46,8 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context '終了期限でソートした場合' do
       it '期限の近いタスクが一番上に表示される' do
-        click_on '終了期限でソートする'
+        click_link '終了期限でソートする'
+        expect(page).to have_content 'タスク一覧'
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'タイトル１'
         expect(task_list[1]).to have_content 'タイトル２'
@@ -54,32 +55,33 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context 'タイトルで検索した場合' do
       it '検索ワード以外は表示されない' do
-      fill_in 'title_key', with: '３'
-      click_on 'Search'
-      expect(page).to have_content 'タイトル３'
-      expect(page).not_to have_content 'タイトル１'
+        fill_in 'title_key', with: '３'
+        click_on 'Search'
+        expect(page).to have_content 'タイトル３'
+        expect(page).not_to have_content 'タイトル１'
       end
     end
     context 'ステータスで検索した場合' do
       it '検索ワード以外は表示されない' do
-      select '未着手', from: 'search_status'
-      click_on 'Search'
-      expect(page).to have_content 'タイトル２'
-      expect(page).not_to have_content 'タイトル３'
-      expect(page).not_to have_content 'タイトル１'
+        select '未着手', from: 'search_status'
+        click_on 'Search'
+        expect(page).to have_content 'タイトル２'
+        expect(page).not_to have_content 'タイトル３'
+        expect(page).not_to have_content 'タイトル１'
       end
     end
     context 'タイトルとステータスで検索した場合' do
       it '検索ワード以外は表示されない' do
-      fill_in 'title_key', with: 'あああ'
-      select '未着手', from: 'search_status'
-      click_on 'Search'
-      expect(page).to have_content 'コンテント５'
+        fill_in 'title_key', with: 'あああ'
+        select '未着手', from: 'search_status'
+        click_on 'Search'
+        expect(page).to have_content 'コンテント５'
       end
     end
     context '優先度でソートした場合' do
       it '優先度の高いタスクが一番上に表示される' do
-        click_on '優先順位でソートする'
+        click_link '優先順位でソートする'
+        expect(page).to have_content 'タスク一覧'
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'タイトル１'
         expect(task_list[1]).to have_content 'あああ'

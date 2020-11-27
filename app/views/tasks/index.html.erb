@@ -7,7 +7,7 @@
 <%= form_with url: tasks_path, method: :get, local: true do |form| %>
   <%= form.label 'ラベル検索' %>
   <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
-  <%= form.submit 'Search', name: nil %>
+  <%= form.submit 'label検索', name: nil %>
 <% end %>
 </div>
 <br>
