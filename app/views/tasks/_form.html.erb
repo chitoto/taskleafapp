@@ -31,6 +31,12 @@
       <%= form.label :priority %><br>
       <%= form.select :priority, Task.priorities.keys, {prompt: "選択してください"} %>
     </div>
+    <div class="label">
+      <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, checked: @task.labels.include?(label), disabled: label[:disabled], include_hidden: false }, label[:id] %>
+      <%= label.name %>
+      <% end %>
+    </div>
     <br>
     <div>
     <%= form.submit class: "btn btn-primary" %>

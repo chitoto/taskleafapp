@@ -9,6 +9,9 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.order(:limit)
     elsif params[:sort_priority]
       @tasks = current_user.tasks.order(priority: :desc)
+    elsif params[:label_id]
+      @tasks = current_user.tasks
+      @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
     else
       @tasks = current_user.tasks.order(created_at: :desc)
       if params[:title_key].present?
@@ -32,6 +35,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+
   end
 
   def create
@@ -64,7 +68,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_title, :task_description, :limit, :status, :priority, :title_key, :status_num)
+    params.require(:task).permit(:task_title, :task_description, :limit, :status, :priority, :title_key, :status_num, {label_ids:[]}, :label )
   end
 
   def set_task
